@@ -19,7 +19,9 @@ The project has three basic apps:
 
 
 ## Installation Guide
-
+```
+git clone https://github.com/daybreak2018/social-network/
+```
 Take a look at our wiki page for a detailed [installation guide][3].
 
 
