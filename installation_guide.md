@@ -2,6 +2,7 @@
 Now that you have cloned our repository follow these steps to run the **Hostelbook** in your local server.
 * **Install database** :- 
     ```
+    #~/social-network/>>
     sudo apt-get update
     sudo apt-get install postgresql postgresql-contrib
     ```
@@ -20,3 +21,8 @@ Now that you have cloned our repository follow these steps to run the **Hostelbo
     sudo -u postgres createdb hostel
     ```
     * Switch back to your normal account
+    * Migrate database
+    ```
+    python manage.py migrate
+    sudo python manage.py runserver 0.0.0.0:80
+    ```
