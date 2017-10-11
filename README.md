@@ -32,4 +32,4 @@ Try Hostelbook now at [http://35.185.234.81][2].
 [0]: https://www.python.org/
 [1]: https://www.djangoproject.com/
 [2]: http://35.185.234.81
-[3]: https://github.com/kaustav1996/Hostelbook/installation_guide.md
+[3]: https://github.com/daybreak2018/social-network/blob/master/installation_guide.md
