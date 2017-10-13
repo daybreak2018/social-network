@@ -9,7 +9,7 @@ Now that you have cloned our repository follow these steps to run the **Hostelbo
 * **Create database using default user postgres** :- 
     * Enter password (remember this) for postgres
     ```
-    sudo psswd postgres
+    sudo passwd postgres
     ```
     * Switch to user postgres and create a database named **hostel**.
     ```
