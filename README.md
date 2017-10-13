@@ -21,6 +21,8 @@ The project has three basic apps:
 ## Installation Guide
 ```
 git clone https://github.com/daybreak2018/social-network/
+cd social-network
+sudo pip install -r requirements.txt
 ```
 Take a look at our wiki page for a detailed [installation guide][3].
 
