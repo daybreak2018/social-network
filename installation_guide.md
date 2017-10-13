@@ -7,7 +7,7 @@ Now that you have cloned our repository follow these steps to run the **Hostelbo
     sudo apt-get install postgresql postgresql-contrib
     ```
 * **Create database using default user postgres** :- 
-    * Enter password 123 for postgres
+    * Enter password (remember this) for postgres
     ```
     sudo psswd postgres
     ```
@@ -15,10 +15,12 @@ Now that you have cloned our repository follow these steps to run the **Hostelbo
     ```
     su - postgres
     createdb hostel
+    psql -d template1 -c "ALTER USER postgres WITH PASSWORD '123';"
     ```
     * If you don't want to switch
     ```
     sudo -u postgres createdb hostel
+    sudo -u postgres psql -d template1 -c "ALTER USER postgres WITH PASSWORD '123';"
     ```
     * Switch back to your normal account
     * Migrate database
