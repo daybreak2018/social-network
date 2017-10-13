@@ -1,3 +1,4 @@
+{% load analytics %}
 {% load staticfiles i18n %}<!DOCTYPE html>
 <html lang="en">
   <head>
@@ -93,5 +94,6 @@
       <script src="{% static 'js/check_messages.js' %}"></script>
     {% endblock body %}
     <script src="{% static 'js/ga.js' %}"></script>
+    {% analytics %}
   </body>
 </html>
