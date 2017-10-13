@@ -7,7 +7,7 @@ Now that you have cloned our repository follow these steps to run the **Hostelbo
     sudo apt-get install postgresql postgresql-contrib
     ```
 * **Create database using default user postgres** :- 
-    * Enter your desired password for postgres
+    * Enter password 123 for postgres
     ```
     sudo psswd postgres
     ```
