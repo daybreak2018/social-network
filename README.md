@@ -1,5 +1,5 @@
 # Hostelbook
-[![Requirements Status](https://requires.io/github/vitorfs/bootcamp/requirements.svg?branch=master)](https://requires.io/github/kaustav1996/Hostelbook/requirements/?branch=master)
+[![Requirements Status](https://requires.io/github/daybreak2018/social-network/requirements.svg?branch=master)](https://requires.io/github/daybreak2018/social-network/requirements/?branch=master)
 
 Hostelbook is an open source **Hostel social network** built with [Python][0] using the [Django Web Framework][1] based on **Bootcamp**.
 
