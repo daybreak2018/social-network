@@ -40,7 +40,6 @@ INSTALLED_APPS = (
     'bootcamp.questions',
     'bootcamp.search',
     'taggit',
-    'google_analytics',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -119,4 +118,3 @@ FILE_UPLOAD_TEMP_DIR = '/tmp/'
 FILE_UPLOAD_PERMISSIONS = 0o644
 
 TAGGIT_CASE_INSENSITIVE = True
-GOOGLE_ANALYTICS_MODEL = True
