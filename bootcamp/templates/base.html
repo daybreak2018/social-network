@@ -91,6 +91,9 @@
       </main>
       <script src="{% static 'js/notifications.js' %}"></script>
       <script src="{% static 'js/check_messages.js' %}"></script>
+      {% if GOOGLE_ANALYTICS_PROPERTY_ID %}
+  {% include "ga.html" %}
+{% endif %}
     {% endblock body %}
     <script src="{% static 'js/ga.js' %}"></script>
   </body>

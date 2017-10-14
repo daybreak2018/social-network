@@ -19,6 +19,8 @@ DATABASES = {
 }
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+GOOGLE_ANALYTICS_PROPERTY_ID = 'UA-98722675-2'
+GOOGLE_ANALYTICS_DOMAIN = '98760ca4.ngrok.io'
 
 # Application definition
 
@@ -69,6 +71,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'context_processors.google_analytics',
             ],
             'debug': DEBUG
         },
