@@ -19,6 +19,7 @@ class Profile(models.Model):
     location = models.CharField(max_length=50, null=True, blank=True)
     url = models.CharField(max_length=50, null=True, blank=True)
     job_title = models.CharField(max_length=50, null=True, blank=True)
+    member = models.IntegerField(default=0)
 
     class Meta:
         db_table = 'auth_profile'
@@ -34,7 +35,7 @@ class Profile(models.Model):
         return url
 
     def get_picture(self):
-        no_picture = 'http://trybootcamp.vitorfs.com/static/img/user.png'
+        no_picture = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
         try:
             filename = settings.MEDIA_ROOT + '/profile_pictures/' +\
                 self.user.username + '.jpg'

@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'bootcamp.messenger',
     'bootcamp.questions',
     'bootcamp.search',
+    'bootcamp.member',
     'taggit',
 )
 
@@ -113,7 +114,7 @@ MEDIA_ROOT = PROJECT_DIR.parent.child('media')
 MEDIA_URL = '/media/'
 
 LOGIN_URL = '/'
-LOGIN_REDIRECT_URL = '/feeds/'
+LOGIN_REDIRECT_URL = '/member/'
 
 ALLOWED_SIGNUP_DOMAINS = ['*']
 

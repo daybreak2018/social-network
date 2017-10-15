@@ -1,0 +1,13 @@
+{% load staticfiles i18n %}<!DOCTYPE html>
+<html lang="en">
+<h1>page_user.profile.member</h1>
+<body>
+{% if page_user.profile.member %}
+<li><a href="{% url 'feeds' %}">{% trans 'Feed' %}</a></li>
+{% endif %}
+{% if not page_user.profile.member %}
+
+<li><a href="{% url 'logout' %}">{% trans 'Log out' %}</a></li>
+{% endif %}
+</body>
+</html>

@@ -33,6 +33,7 @@ urlpatterns = [
     url(r'^questions/', include('bootcamp.questions.urls')),
     url(r'^articles/', include('bootcamp.articles.urls')),
     url(r'^messages/', include('bootcamp.messenger.urls')),
+    url(r'^member/', include('bootcamp.member.urls')),
     url(r'^notifications/$', activities_views.notifications,
         name='notifications'),
     url(r'^notifications/last/$', activities_views.last_notifications,
@@ -44,7 +45,6 @@ urlpatterns = [
     url(r'^search/$', search_views.search, name='search'),
     url(r'^(?P<username>[^/]+)/$', core_views.profile, name='profile'),
     url(r'^i18n/', include('django.conf.urls.i18n', namespace='i18n')),
-
 ]
 
 if settings.DEBUG:
