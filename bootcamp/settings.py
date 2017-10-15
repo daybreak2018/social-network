@@ -20,7 +20,7 @@ DATABASES = {
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 GOOGLE_ANALYTICS_PROPERTY_ID = 'UA-98722675-2'
-GOOGLE_ANALYTICS_DOMAIN = '98760ca4.ngrok.io'
+GOOGLE_ANALYTICS_DOMAIN = 'http://da6dda54.ngrok.io/'
 
 # Application definition
 
