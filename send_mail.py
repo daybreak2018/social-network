@@ -125,7 +125,7 @@ def createMessageWithAttachment(
 def main():
     to = "kaustavsmailbox1@gmail.com"
     sender = "kaustavsmailbox21@gmail.com"
-    subject = "subject"
+    subject = "Hostelbook : Send Sign-Up URL"
     msgHtml = "Hi Admin<br/>"+x+" wants to join Hostelbook<br/>Phone Number= "+n
     msgPlain = "Hi\nPlain Email"
     SendMessage(sender, to, subject, msgHtml, msgPlain)
