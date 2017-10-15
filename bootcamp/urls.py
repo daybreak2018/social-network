@@ -1,3 +1,4 @@
+x='olaamigo'
 from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.static import static
@@ -20,7 +21,7 @@ urlpatterns = [
     url(r'^login', auth_views.login, {'template_name': 'core/cover.html'},
         name='login'),
     url(r'^logout', auth_views.logout, {'next_page': '/'}, name='logout'),
-    url(r'^signup/$', bootcamp_auth_views.signup, name='signup'),
+    url(r'^'+x+'/$', bootcamp_auth_views.signup, name='signup'),
     url(r'^settings/$', core_views.settings, name='settings'),
     url(r'^settings/picture/$', core_views.picture, name='picture'),
     url(r'^settings/upload_picture/$', core_views.upload_picture,
