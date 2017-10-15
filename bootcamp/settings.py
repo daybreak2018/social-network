@@ -41,7 +41,6 @@ INSTALLED_APPS = (
     'bootcamp.messenger',
     'bootcamp.questions',
     'bootcamp.search',
-    'bootcamp.member',
     'taggit',
 )
 
@@ -58,6 +57,11 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'bootcamp.urls'
 
 WSGI_APPLICATION = 'bootcamp.wsgi.application'
+REST_FRAMEWORK = {
+'DEFAULT_AUTHENTICATION_CLASSES': (
+'rest_framework.authentication.TokenAuthentication',
+)
+}
 
 TEMPLATES = [
     {
@@ -114,7 +118,7 @@ MEDIA_ROOT = PROJECT_DIR.parent.child('media')
 MEDIA_URL = '/media/'
 
 LOGIN_URL = '/'
-LOGIN_REDIRECT_URL = '/member/'
+LOGIN_REDIRECT_URL = '/feeds/'
 
 ALLOWED_SIGNUP_DOMAINS = ['*']
 
@@ -122,3 +126,4 @@ FILE_UPLOAD_TEMP_DIR = '/tmp/'
 FILE_UPLOAD_PERMISSIONS = 0o644
 
 TAGGIT_CASE_INSENSITIVE = True
+REST_SESSION_LOGINS = False
