@@ -20,7 +20,7 @@ Now that you have cloned our repository follow these steps to run the **Hostelbo
     * If you don't want to switch
     ```
     sudo -u postgres createdb postgres
-    sudo -u postgres psql -d template1 -c "ALTER USER postgres WITH PASSWORD '123';"
+    sudo -u postgres psql -d postgres -c "ALTER USER postgres WITH PASSWORD '123';"
     ```
     * Switch back to your normal account
     * Migrate database
