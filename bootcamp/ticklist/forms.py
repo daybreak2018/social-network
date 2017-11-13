@@ -12,8 +12,8 @@ class TickListForm(forms.ModelForm):
     num_days=calendar.monthrange(dtnow.year,dtnow.month)[1]
     meal_choices=(('V','Veg'),('N','Non Veg'),('C','Cancel'))
     time_choices=(('d','Day'),('n','Night'),('b','Both'))
-    start_date = forms.IntegerField(label="Starting Date ", required=True, validators=[MinValueValidator(dtnow.date),MaxValueValidator(num_days)])
-    end_date = forms.IntegerField(label="Starting Date ", required=True, validators=[MinValueValidator(dtnow.date),MaxValueValidator(num_days)])
+    start_date = forms.IntegerField(label="Starting Date ", required=True, validators=[MinValueValidator(str(dtnow.date()).split("-")[2]),MaxValueValidator(num_days)])
+    end_date = forms.IntegerField(label="Starting Date ", required=True, validators=[MinValueValidator(str(dtnow.date()).split("-")[2]),MaxValueValidator(num_days)])
     meal_type=forms.ChoiceField(label="Type of meal", widget=forms.RadioSelect, choices=meal_choices,required='True')
     time_type=forms.ChoiceField(label="Enter meal times", widget=forms.RadioSelect, choices=time_choices,required='True')
 
