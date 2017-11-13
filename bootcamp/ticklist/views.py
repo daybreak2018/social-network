@@ -9,6 +9,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import render
 from bootcamp.ticklist.forms import TickListForm
 from bootcamp.ticklist.models import TickList
+from django.contrib.auth.models import User
 
 '''def ticklist(request):
     all_tick = TickList.meal_arr()
@@ -20,9 +21,12 @@ def ticklist(request):
     return render(request, 'ticklist/ticklist.html', {'ticklist': ticklist})
 
 
-'''class EditTickList(LoginRequiredMixin, UpdateView):
+class EditTickList(LoginRequiredMixin, UpdateView):
     template_name = 'ticklist/edit.html'
     model = TickList
     form_class = TickListForm
     success_url = reverse_lazy('ticklist')
-'''
+    slug_field = 'ticklist_slug'
+    foo=1
+    def get_object(self):
+        return get_object_or_404(User, pk=self.foo)
