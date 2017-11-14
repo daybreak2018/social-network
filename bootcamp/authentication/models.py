@@ -17,9 +17,11 @@ from bootcamp.activities.models import Notification
 class Profile(models.Model):
     user = models.OneToOneField(User)
     location = models.CharField(max_length=50, null=True, blank=True)
-    url = models.CharField(max_length=50, null=True, blank=True)
-    job_title = models.CharField(max_length=50, null=True, blank=True)
-    member = models.IntegerField(default=0)
+    joiningyear = models.CharField(max_length=50, null=True, blank=True)
+    department = models.CharField(max_length=50, null=True, blank=True)
+    phone=models.IntegerField(max_length=10,null=True,blank=True)
+    gphone=models.IntegerField(max_length=10,null=True,blank=True)
+    room_num=models.CharField(max_length=5,null=True,blank=True)
 
     class Meta:
         db_table = 'auth_profile'

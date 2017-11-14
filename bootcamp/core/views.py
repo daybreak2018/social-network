@@ -49,6 +49,7 @@ def network(request):
 @login_required
 def profile(request, username):
     page_user = get_object_or_404(User, username=username)
+    dept=page_user.profile.department
     all_feeds = Feed.get_feeds().filter(user=page_user)
     paginator = Paginator(all_feeds, FEEDS_NUM_PAGES)
     feeds = paginator.page(1)
@@ -68,6 +69,7 @@ def profile(request, username):
     data, datepoints = Activity.daily_activity(page_user)
     data = {
         'page_user': page_user,
+	'dept':dept,
         'feeds_count': feeds_count,
         'article_count': article_count,
         'article_comment_count': article_comment_count,
@@ -95,10 +97,13 @@ def settings(request):
         if form.is_valid():
             user.first_name = form.cleaned_data.get('first_name')
             user.last_name = form.cleaned_data.get('last_name')
-            user.profile.job_title = form.cleaned_data.get('job_title')
+            user.profile.department = form.cleaned_data.get('department')
             user.email = form.cleaned_data.get('email')
-            user.profile.url = form.cleaned_data.get('url')
+            user.profile.joiningyear = form.cleaned_data.get('joiningyear')
             user.profile.location = form.cleaned_data.get('location')
+	    user.profile.phone = form.cleaned_data.get('phone')
+	    user.profile.gphone = form.cleaned_data.get('gphone')
+  	    user.profile.room_num = form.cleaned_data.get('room_num')
             user.save()
             messages.add_message(request,
                                  messages.SUCCESS,
@@ -106,9 +111,12 @@ def settings(request):
 
     else:
         form = ProfileForm(instance=user, initial={
-            'job_title': user.profile.job_title,
-            'url': user.profile.url,
-            'location': user.profile.location
+            'department': user.profile.department,
+            'joiningyear': user.profile.joiningyear,
+            'location': user.profile.location,
+	    'phone': user.profile.phone,
+	    'gphone': user.profile.gphone,
+	    'room_num': user.profile.room_num
             })
 
     return render(request, 'core/settings.html', {'form': form})

@@ -12,7 +12,7 @@ class ProfileForm(forms.ModelForm):
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         max_length=30,
         required=False)
-    job_title = forms.CharField(
+    department = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         max_length=50,
         required=False)
@@ -20,19 +20,22 @@ class ProfileForm(forms.ModelForm):
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         max_length=75,
         required=False)
-    url = forms.CharField(
+    joiningyear = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         max_length=50,
-        required=False)
+        required=False,label="Year of joining")
     location = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         max_length=50,
         required=False)
+    phone=forms.IntegerField(label="Phone no.")
+    gphone=forms.IntegerField(label="Guardian's Phone no.")
+    room_num=forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}),label="Room no.")
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'job_title',
-                  'email', 'url', 'location', ]
+        fields = ['first_name', 'last_name', 'department',
+                  'email', 'joiningyear', 'location','phone','gphone','room_num' ]
 
 
 class ChangePasswordForm(forms.ModelForm):
