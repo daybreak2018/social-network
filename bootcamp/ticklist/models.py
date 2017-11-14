@@ -14,18 +14,13 @@ class TickList(models.Model):
     num_days=calendar.monthrange(dtnow.year,dtnow.month)[1]
     meal_choices=(('V','Veg'),('N','Non Veg'),('C','Cancel'))
     time_choices=(('d','Day'),('n','Night'),('b','Both'))
-    start_date = models.IntegerField(validators=[
-            MaxValueValidator(num_days),
-            MinValueValidator(dtnow)
-        ])
-    end_date = models.IntegerField(validators=[
-            MaxValueValidator(num_days),
-            MinValueValidator(start_date)
-        ])
+    start_date = models.IntegerField()
+    end_date = models.IntegerField()
     meal_type = models.CharField(max_length=1)
     time_type = models.CharField(max_length=1)
     mess_user = models.ForeignKey(User)
     meal_arr=[[i,'c'] for i in range(1,num_days+1)]
+
 
     
 
