@@ -15,7 +15,7 @@ Now that you have cloned our repository follow these steps to run the **Hostelbo
     ```
     su - postgres
     createdb postgres
-    psql -d template1 -c "ALTER USER postgres WITH PASSWORD '123';"
+    psql -d postgres -c "ALTER USER postgres WITH PASSWORD '123';"
     ```
     * If you don't want to switch
     ```
