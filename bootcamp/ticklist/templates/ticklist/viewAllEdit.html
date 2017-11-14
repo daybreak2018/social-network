@@ -3,7 +3,6 @@
 {% load i18n %}
 
 {% block head %}
-  <link href="{% static 'css/ticklist.css' %}" rel="stylesheet">
   <script src="{% static 'js/articles.js' %}"></script>
 {% endblock head %}
 
@@ -12,7 +11,7 @@
     <li><a href="{% url 'ticklist' %}">{% trans 'Ticklist' %}</a></li>
     <li class="active">{% trans 'Edit' %}</li>
   </ol>
-  <form action="{% url 'edit'  %}" method="post" role="form">
+  <form action="{% url 'viewAll'  %}" method="post" role="form">
     {% csrf_token %}
     {{ form.status }}
     {% for field in form.visible_fields %}
@@ -31,7 +30,7 @@
       </div>
     {% endfor %}
     <div class="form-group">
-      <button type="submit" class="btn btn-primary publish">{% trans 'Save' %}</button>
+      <button type="submit" class="btn btn-primary publish">{% trans 'View' %}</button>
     </div>
   </form>
 {% endblock main %}

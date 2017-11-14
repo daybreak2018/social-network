@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block head %}
+  <script src="{% static 'js/articles.js' %}"></script>
+  <link href="{% static 'css/ticklist.css' %}" rel="stylesheet">
+{% endblock head %}
+
+{% block main %}
+  <ol class="breadcrumb">
+    <li><a href="{% url 'ticklist' %}">{% trans 'Ticklist' %}</a></li>
+    <li class="active">{% trans "View General List" %}</li>
+  </ol>
+  <div>
+     <a href="{% url 'edit'  %}" class="btn btn-primary pull-right">
+        <span class="glyphicon glyphicon-pencil"></span> {% trans "Edit TickList" %}
+      </a>
+     <a href="{% url 'editSelective'  %}" class="btn btn-primary pull-right">
+        <span class="glyphicon glyphicon-pencil"></span> {% trans "Selectively Edit TickList" %}
+      </a>
+</div>
+<table id="showtoday">
+	<tr>
+		<td>Veg Count</td>
+		<td>{{ vl }}</td>
+	</tr>
+	<tr>
+		<td>Non-Veg Count</td>
+		<td>{{ nl }}</td>
+	</tr>
+	
+</table>
+	{% if vl != 0 %}
+	  <table id="showticklist">
+		<h2>Veg</h2>
+		<thead>
+		  <tr>
+	 	    <th>username</th>
+		  </tr>
+		</thead>
+		<tbody>
+			{% for x in Vmeal %}
+			<tr>  
+			  <td>{{ x.profile.get_screen_name }}</td>
+	    		</tr>	
+	  		{% endfor %}
+		</tbody>
+	  </table>
+	{% endif %}
+	{% if nl != 0 %}
+	  <table id="showticklist">
+		<h2>Non-Veg</h2>
+		<thead>
+		  <tr>
+	 	    <th>username</th>
+		  </tr>
+		</thead>
+		<tbody>
+			{% for x in Nmeal %}
+			<tr>  
+			  <td>{{ x.get_full_name }}</td>
+	    		</tr>	
+	  		{% endfor %}
+		</tbody>
+	  </table>
+	{% endif %}
+{% endblock main %}
+
+

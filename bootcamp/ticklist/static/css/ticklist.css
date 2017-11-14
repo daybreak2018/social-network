@@ -104,7 +104,7 @@ article .tags {
 #showticklist {
 	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     	border-collapse: collapse;
-    	width: 75%;
+    	width: 100%;
 }
 #showticklist td, #showticklist th {
     border: 1px solid #ddd;
@@ -122,3 +122,20 @@ article .tags {
     background-color: #4CAF50;
     color: white;
 }
+
+#showtoday table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    background-color: #ee4466;
+}
+#showtoday td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    background-color: #ee4466;
+    padding: 5px;
+    text-align: left;
+    font-family:"Georgia";
+    color:white;
+    font-size:20px;
+}
+

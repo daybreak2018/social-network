@@ -5,7 +5,7 @@
 {% block title %}{{ ticklist.title }}{% endblock %}
 
 {% block head %}
-  <link href="{% static 'css/articles.css' %}" rel="stylesheet">
+  <link href="{% static 'css/ticklist.css' %}" rel="stylesheet">
   <script src="{% static 'js/articles.js' %}"></script>
 {% endblock head %}
 
@@ -21,10 +21,74 @@
      <a href="{% url 'editSelective'  %}" class="btn btn-primary pull-right">
         <span class="glyphicon glyphicon-pencil"></span> {% trans "Selectively Edit TickList" %}
       </a>
+      <a href="{% url 'viewAll'  %}" class="btn btn-primary pull-right">
+        <span class="glyphicon glyphicon-pencil"></span> {% trans "View General List" %}
+      </a>
 </div>
-  {% for days in ticklist %}
-	<li>{{ days }}</li>
-  {% endfor %}
+<table id="showtoday">
+	<tr>
+		<td>Today</td>
+		<td>{{ today.0 }}</td>
+	</tr>
+	<tr>
+		<td>Morning</td>
+		<td>
+		    {% if today.1 == 'C' %}
+			Canceled
+		    {% elif today.1 == 'V' %}
+			Veg
+		    {% elif today.1 == 'N' %}
+			Non-Veg
+		    {% endif %}
+		  </td>
+	</tr>
+	<tr>
+		<td>Night</td>
+		<td>
+		    {% if today.2 == 'C' %}
+			Canceled
+		    {% elif today.2 == 'V' %}
+			Veg
+		    {% elif today.2 == 'N' %}
+			Non-Veg
+		    {% endif %}
+		  </td>
+	</tr>
+</table>
+  <table id="showticklist">
+	<thead>
+	  <tr>
+	    <th>Days</th>
+ 	    <th>Morning</th>
+	    <th>Night</th>
+	  </tr>
+        </thead>
+	<tbody>
+		{% for x in ticklist %}
+		<tr>  
+		  <td>{{ x.0 }}</td>
+		  <td>
+		    {% if x.1 == 'C' %}
+			Canceled
+		    {% elif x.1 == 'V' %}
+			Veg
+		    {% elif x.1 == 'N' %}
+			Non-Veg
+		    {% endif %}
+		  </td>
+		  <td>
+		    {% if x.2 == 'C' %}
+			Canceled
+		    {% elif x.2 == 'V' %}
+			Veg
+		    {% elif x.2 == 'N' %}
+			Non-Veg
+		    {% endif %}
+		  </td>
+    		</tr>	
+  		{% endfor %}
+	</tbody>
+  </table>
 {% endblock main %}
 
 
