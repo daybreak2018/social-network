@@ -11,15 +11,16 @@
 
 {% block main %}
   <ol class="breadcrumb">
-    <li><a href="{% url 'ticklist' %}">{% trans 'TickList' %}</a></li>
-    <li class="active">{% trans 'View TickList' %}</li>
+    <li><a href="{% url 'ticklist' %}">{% trans 'Mess List' %}</a></li>
+    <li class="active">{% trans 'View Mess List' %}</li>
   </ol>
+<img src="{% static 'img/mess.jpg' %}">
   <div>
      <a href="{% url 'edit'  %}" class="btn btn-primary pull-right">
-        <span class="glyphicon glyphicon-pencil"></span> {% trans "Edit TickList" %}
+        <span class="glyphicon glyphicon-pencil"></span> {% trans "Edit Mess List" %}
       </a>
      <a href="{% url 'editSelective'  %}" class="btn btn-primary pull-right">
-        <span class="glyphicon glyphicon-pencil"></span> {% trans "Selectively Edit TickList" %}
+        <span class="glyphicon glyphicon-pencil"></span> {% trans "Selectively Change Mess List" %}
       </a>
       <a href="{% url 'viewAll'  %}" class="btn btn-primary pull-right">
         <span class="glyphicon glyphicon-pencil"></span> {% trans "View General List" %}
