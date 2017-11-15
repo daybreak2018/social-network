@@ -5,19 +5,24 @@ from django.core.validators import MinValueValidator
 from django.core.validators import MaxValueValidator
 import datetime
 import calendar
-
+dtnow=datetime.datetime.now()
+num_days=calendar.monthrange(dtnow.year,dtnow.month)[1]
+meal_choices=(('V','Veg'),('N','Non Veg'),('C','Cancel'))
 
 class TickListForm(forms.ModelForm):
-    dtnow=datetime.datetime.now()
-    num_days=calendar.monthrange(dtnow.year,dtnow.month)[1]
-    meal_choices=(('V','Veg'),('N','Non Veg'),('C','Cancel'))
+    
     start_date = forms.IntegerField(label="Starting Date ", required=True)
     end_date = forms.IntegerField(label="Ending Date ", required=True)
     dmeal_type=forms.ChoiceField(label="Type of meal for day", widget=forms.RadioSelect, choices=meal_choices)
     nmeal_type=forms.ChoiceField(label="Type of meal for night", widget=forms.RadioSelect, choices=meal_choices)
     def clean(self):
         cleaned_data = super(TickListForm, self).clean()
-        # do your custom validations / transformations here
+	if self.cleaned_data.get('start_date')<dtnow.day:
+		self._errors['start_date'] = self.error_class([
+                'Start date cannot be lesser than today.'])
+	if not self.cleaned_data.get('start_date')<=self.cleaned_data.get('end_date') <=num_days+1:
+		self._errors['end_date'] = self.error_class([
+                'Invalid end date'])
         # and some more
         return cleaned_data
     class Meta:
@@ -36,6 +41,9 @@ class TickListSelectiveForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super(TickListSelectiveForm, self).clean()
         # do your custom validations / transformations here
+	if not dtnow.date<=self.cleaned_data.get('req_date')<=num_days+1:
+		self._errors['req_date'] = self.error_class([
+                'Invalid date'])
         # and some more
         return cleaned_data
     class Meta:

@@ -9,19 +9,22 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.signals import post_save
 from django.utils.encoding import python_2_unicode_compatible
+from django.core.validators import RegexValidator
 
 from bootcamp.activities.models import Notification
 
 
 @python_2_unicode_compatible
 class Profile(models.Model):
+    phone_regex = RegexValidator(regex=r'^\+?1?\d{10,12}$', message="Phone number must be entered in the format: '+999999999'. Up to 12 digits allowed.")
+    room_regex = RegexValidator(regex=r'^[n|o]\d\d\d$')
     user = models.OneToOneField(User)
     location = models.CharField(max_length=50, null=True, blank=True)
     joiningyear = models.CharField(max_length=50, null=True, blank=True)
     department = models.CharField(max_length=50, null=True, blank=True)
-    phone=models.IntegerField(max_length=10,null=True,blank=True)
-    gphone=models.IntegerField(max_length=10,null=True,blank=True)
-    room_num=models.CharField(max_length=5,null=True,blank=True)
+    phone=models.CharField(validators=[phone_regex], max_length=15, blank=True, null=True)
+    gphone=models.CharField(validators=[phone_regex], max_length=15, blank=True, null=True)
+    room_num=models.CharField(validators=[room_regex],max_length=4,null=True,blank=True)
 
     class Meta:
         db_table = 'auth_profile'

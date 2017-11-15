@@ -28,9 +28,9 @@ class ProfileForm(forms.ModelForm):
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         max_length=50,
         required=False)
-    phone=forms.IntegerField(label="Phone no.")
-    gphone=forms.IntegerField(label="Guardian's Phone no.")
-    room_num=forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}),label="Room no.")
+    phone=forms.RegexField(regex=r'^\+?1?\d{10,12}$', label="Phone number",widget=forms.TextInput(attrs={'placeholder': '+999999999999'}))
+    gphone=forms.RegexField(regex=r'^\+?1?\d{10,12}$', label="Guardian's phone number",widget=forms.TextInput(attrs={'placeholder': '+999999999999'}))
+    room_num=forms.RegexField(regex=r'^[n|o]\d\d\d$', label="Room no.", widget=forms.TextInput(attrs={'placeholder': 'eg. n999 or o999'}))
 
     class Meta:
         model = User
