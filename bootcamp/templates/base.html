@@ -48,6 +48,9 @@
                 <li><a href="{% url 'questions' %}">{% trans 'Q&A' %}</a></li>
                 <li><a href="{% url 'network' %}">{% trans 'Network' %}</a></li>
                 <li><a href="{% url 'inbox' %}">Inbox  <span class="badge" id="unread-count">0</span></a></li>
+	      	{% if user.profile.get_screen_name == "hostelSecretary" %}
+			<li><a href="{% url 'config_settings' %}">{% trans 'Mess Settings' %}</a></li>
+		{% endif %}
               </ul>
               <ul class="nav navbar-nav navbar-right">
                 {% if not hide_search %}

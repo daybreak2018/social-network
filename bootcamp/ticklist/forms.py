@@ -27,21 +27,17 @@ class TickListForm(forms.ModelForm):
         return cleaned_data
     class Meta:
         model = TickList
-        fields = ['start_date','end_date','nmeal_type']
+        fields = ['start_date','end_date','dmeal_type','nmeal_type']
 
 
 class TickListSelectiveForm(forms.ModelForm):
-    dtnow=datetime.datetime.now()
-    num_days=calendar.monthrange(dtnow.year,dtnow.month)[1]
-    meal_choices=(('V','Veg'),('N','Non Veg'),('C','Cancel'))
-    time_choices=(('d','Day'),('n','Night'),('b','Both'))
     req_date = forms.IntegerField(label="Required Date ", required=True)
     dmeal_type=forms.ChoiceField(label="Type of meal for day", widget=forms.RadioSelect, choices=meal_choices)
     nmeal_type=forms.ChoiceField(label="Type of meal for night", widget=forms.RadioSelect, choices=meal_choices)
     def clean(self):
         cleaned_data = super(TickListSelectiveForm, self).clean()
         # do your custom validations / transformations here
-	if not dtnow.date<=self.cleaned_data.get('req_date')<=num_days+1:
+	if dtnow.day>self.cleaned_data.get('req_date') or  self.cleaned_data.get('req_date')>num_days+1:
 		self._errors['req_date'] = self.error_class([
                 'Invalid date'])
         # and some more

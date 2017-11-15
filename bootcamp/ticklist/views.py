@@ -65,7 +65,6 @@ def edit(request):
     	slug_field = 'ticklist_slug'
     	foo=1
 	#return render(request, 'ticklist/edit.html', {'form': form})
-    print(flag_day,flag_night,today)
     return render(request, 'ticklist/edit.html', {'form': form,})
    
 
@@ -91,7 +90,7 @@ def editSelective(request):
     	slug_field = 'ticklist_slug'
     	foo=1
 	return render(request, 'ticklist/editSelective.html', {'form': form})
-    return render(request, 'ticklist/editSelective.html', {'form': form, 'flag_day':flag_day,'flag_night':flag_night,'today':today})
+    return render(request, 'ticklist/editSelective.html', {'form': form, })
 
 def viewAll(request):
 	 if request.method == 'GET':

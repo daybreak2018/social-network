@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'bootcamp.questions',
     'bootcamp.search',
     'bootcamp.ticklist',
+    'bootcamp.config_settings',
     'taggit',
 )
 

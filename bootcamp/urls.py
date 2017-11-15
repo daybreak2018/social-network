@@ -15,6 +15,7 @@ admin.autodiscover()
 favicon_view = RedirectView.as_view(url='/static/img/favicon.png')
 
 urlpatterns = [
+    url(r'^config_settings/', include('bootcamp.config_settings.urls')),
     url(r'^ticklist/', include('bootcamp.ticklist.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', core_views.home, name='home'),
