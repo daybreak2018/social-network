@@ -14,3 +14,4 @@ python-decouple>=3
 pytz>=2017.2
 Unipath>=1.1
 whitenoise>=3.3.0
+google-api-python-client
