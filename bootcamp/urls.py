@@ -10,11 +10,13 @@ from bootcamp.core import views as core_views
 from bootcamp.search import views as search_views
 from django.views.generic.base import RedirectView
 from django.contrib import admin
+from django.views.generic import TemplateView
 admin.autodiscover()
 
 favicon_view = RedirectView.as_view(url='/static/img/favicon.png')
 
 urlpatterns = [
+    url(r'^about$', TemplateView.as_view(template_name='about.html') , name='about'),
     url(r'^config_settings/', include('bootcamp.config_settings.urls')),
     url(r'^ticklist/', include('bootcamp.ticklist.urls')),
     url(r'^admin/', include(admin.site.urls)),
