@@ -6,7 +6,8 @@ from bootcamp.settings import PROJECT_DIR
 import re
 import shutil
 from tempfile import mkstemp
-from bootcamp.config_settings.forms import ChangeSignupForm, ChangeMenuForm
+from bootcamp.config_settings.forms import ChangeSignupForm, ChangeMenuForm, EditBillForm
+from .models import Bills
 import os
 import contextlib
 try:
@@ -122,3 +123,32 @@ def reset_list(request):
 	f=open(PROJECT_DIR+'/ticklist/data.json','w')
 	f.write("{}")
 	return render(request, 'config_settings/config_settings.html')
+
+def edit_bill(request):
+	form=EditBillForm()
+	if request.method=='GET':
+		form=EditBillForm()
+	else:
+		form=EditBillForm(request.POST)
+		if(form.is_valid()):
+			form_month=form.cleaned_data["month"]
+			form_bill=form.cleaned_data["bill"]
+			if Bills.objects.filter(month = form_month).exists():
+				billobj=Bills.objects.get(month = form_month)
+				billobj.bill=form_bill
+				billobj.save()
+			else:
+				billobj=Bills.objects.create(month = form_month, bill= form_bill)
+				billobj.save()
+		show_bill(request)		
+	return render(request, 'config_settings/edit_bill.html',{'form':form})
+
+def show_bill(request):
+	data=Bills.objects.all()
+	mo=[["",""] for i in range(len(data))]
+	for i in range(len(data)):
+		a,b=str(data[i]).split(":")
+		mo[i][0]=a
+		mo[i][1]=b
+
+	return render(request, 'config_settings/show_bill.html', {'arr':mo})

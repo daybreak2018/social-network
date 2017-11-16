@@ -14,9 +14,10 @@ from django.views.generic import TemplateView
 admin.autodiscover()
 
 favicon_view = RedirectView.as_view(url='/static/img/favicon.png')
-
+#TemplateView.as_view(template_name='about.html') , name='about'
 urlpatterns = [
-    url(r'^about$', TemplateView.as_view(template_name='about.html') , name='about'),
+    url(r'^about$', core_views.about, name='about' ),
+    url(r'^about2$', TemplateView.as_view(template_name='about.html'), name='about2' ),
     url(r'^config_settings/', include('bootcamp.config_settings.urls')),
     url(r'^ticklist/', include('bootcamp.ticklist.urls')),
     url(r'^admin/', include(admin.site.urls)),

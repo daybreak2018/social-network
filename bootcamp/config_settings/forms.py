@@ -1,4 +1,5 @@
 from django import forms
+from .models import Bills
 
 class ChangeSignupForm(forms.Form):    
     new_url = forms.CharField(
@@ -30,6 +31,17 @@ class ChangeMenuForm(forms.Form):
         return cleaned_data
     class Meta:
         fields = ['new_url']
+
+class EditBillForm(forms.ModelForm):
+
+	def clean(self):
+		cleaned_data = super(EditBillForm, self).clean()
+		return cleaned_data
+
+
+	class Meta:
+		model=Bills
+		fields = ['month','bill']
 
 
 

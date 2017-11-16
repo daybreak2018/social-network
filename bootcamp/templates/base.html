@@ -42,13 +42,14 @@
                     <span class="glyphicon glyphicon-bell"></span>
                   </a>
                 </li>
-                <li><a href="{% url 'ticklist' %}">{% trans 'Mess List' %}</a></li>
+                <li><a href="{% url 'ticklist' %}">{% trans 'Mess' %}</a></li>
+		<li><a href="{% url 'show_bill' %}">{% trans 'Bill' %}</a></li>
                 <li><a href="{% url 'feeds' %}">{% trans 'Feed' %}</a></li>
                 <li><a href="{% url 'articles' %}">{% trans 'Articles' %}</a></li>
                 <li><a href="{% url 'questions' %}">{% trans 'Q&A' %}</a></li>
                 <li><a href="{% url 'network' %}">{% trans 'Network' %}</a></li>
                 <li><a href="{% url 'inbox' %}">Inbox  <span class="badge" id="unread-count">0</span></a></li>
-		<li><a href="{% url 'about' %}">{% trans 'About' %}</a></li>
+		<li><a href="{% url 'about2' %}">{% trans 'About' %}</a></li>
 	      	{% if user.profile.get_screen_name == "hostelSecretary" %}
 			<li><a href="{% url 'config_settings' %}">{% trans 'Mess Settings' %}</a></li>
 		{% endif %}

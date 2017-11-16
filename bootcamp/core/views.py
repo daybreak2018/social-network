@@ -20,7 +20,8 @@ from bootcamp.activities.models import Activity
 from bootcamp.messenger.models import Message
 
 from PIL import Image
-
+def about(request):
+	return render(request, 'core/about.html')
 
 def home(request):
     if request.user.is_authenticated():
