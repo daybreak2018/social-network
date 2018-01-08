@@ -18,7 +18,7 @@ class TickList(models.Model):
     end_date = models.IntegerField()
     meal_type = models.CharField(max_length=1)
     time_type = models.CharField(max_length=1)
-    mess_user = models.ForeignKey(User)
+    mess_user = models.ForeignKey(User,on_delete=models.CASCADE,)
     meal_arr=[[i,'c'] for i in range(1,num_days+1)]
 
 

@@ -8,8 +8,9 @@ import shutil
 from tempfile import mkstemp
 from bootcamp.config_settings.forms import ChangeSignupForm, ChangeMenuForm, EditBillForm
 from .models import Bills
-import os
+
 import contextlib
+
 try:
     from urllib.parse import urlencode
 except ImportError:
@@ -18,7 +19,7 @@ try:
     from urllib.request import urlopen
 except ImportError:
     from urllib2 import urlopen
-import sys
+
 def make_tiny(url):
     request_url = ('http://tinyurl.com/api-create.php?' + 
     urlencode({'url':url}))
@@ -87,7 +88,7 @@ def change_signup(request):
 			s=f.readline()
 			try:
 			    sed(s.split("'")[1], new_url, PROJECT_DIR+"/urls.py")
-			except WindowsError, e:
+			except shutil.WindowsError:
 			    print("[%] Changing Url")
 		
 	f=open(PROJECT_DIR+'/urls.py','r')
@@ -112,9 +113,12 @@ def change_menu(request):
 				s=f.readline()
 			print(s)
 			print(s.split("'")[1])
+
 			try:
-			    sed(s.split("'")[1], new_url, PROJECT_DIR+"/ticklist/templates/ticklist/ticklist.html")
-			except WindowsError, e:
+				sed(s.split("'")[1], new_url, PROJECT_DIR+"/ticklist/templates/ticklist/ticklist.html")
+				sed(s.split("'")[1], new_url, PROJECT_DIR + "/ticklist/templates/ticklist/edit.html")
+				sed(s.split("'")[1], new_url, PROJECT_DIR + "/ticklist/templates/ticklist/editSelective.html")
+			except shutil.WindowsError:
 			    print("[%] Changing Url")
 		return render(request, 'config_settings/config_settings.html')
 	return render(request, 'config_settings/change_menu.html',{'form':form})
@@ -146,9 +150,11 @@ def edit_bill(request):
 def show_bill(request):
 	data=Bills.objects.all()
 	mo=[["",""] for i in range(len(data))]
-	for i in range(len(data)):
-		a,b=str(data[i]).split(":")
-		mo[i][0]=a
-		mo[i][1]=b
+	if(len(data)!=0):
+		for i in range(len(data)):
+			print (data[i].month)
+			a,b=data[i].month,data[i].bill
+			mo[i][0]=a
+			mo[i][1]=b
 
 	return render(request, 'config_settings/show_bill.html', {'arr':mo})

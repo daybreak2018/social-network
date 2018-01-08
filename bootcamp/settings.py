@@ -43,10 +43,10 @@ INSTALLED_APPS = (
     'bootcamp.search',
     'bootcamp.ticklist',
     'bootcamp.config_settings',
-    'taggit',
+    
 )
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',

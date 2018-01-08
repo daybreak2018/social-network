@@ -20,7 +20,7 @@ urlpatterns = [
     url(r'^about2$', TemplateView.as_view(template_name='about.html'), name='about2' ),
     url(r'^config_settings/', include('bootcamp.config_settings.urls')),
     url(r'^ticklist/', include('bootcamp.ticklist.urls')),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', admin.site.urls),
     url(r'^$', core_views.home, name='home'),
     url(r'^favicon\.png$', favicon_view),
     url(r'^login', auth_views.login, {'template_name': 'core/cover.html'},
@@ -49,7 +49,7 @@ urlpatterns = [
     url(r'^autocomplete/$', search_views.get_autocomplete_suggestions, name='autocomplete'),
     url(r'^search/$', search_views.search, name='search'),
     url(r'^(?P<username>[^/]+)/$', core_views.profile, name='profile'),
-    url(r'^i18n/', include('django.conf.urls.i18n', namespace='i18n')),
+    url(r'^i18n/', include('django.conf.urls.i18n')),
 ]
 
 if settings.DEBUG:

@@ -10,11 +10,12 @@
 {% endblock head %}
 
 {% block main %}
+<img src='http://tinyurl.com/y75yz37m' style="width:100%; height:500px">
   <ol class="breadcrumb">
     <li><a href="{% url 'ticklist' %}">{% trans 'Mess List' %}</a></li>
     <li class="active">{% trans 'View Mess List' %}</li>
   </ol>
-<img src='http://tinyurl.com/y9tfuxd7'> 
+
 <a href="{% url 'edit'  %}" class="btn btn-primary pull-right">
         <span class="glyphicon glyphicon-pencil"></span> {% trans "Edit Mess List" %}
       </a>

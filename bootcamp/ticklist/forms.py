@@ -17,12 +17,10 @@ class TickListForm(forms.ModelForm):
     nmeal_type=forms.ChoiceField(label="Type of meal for night", widget=forms.RadioSelect, choices=meal_choices)
     def clean(self):
         cleaned_data = super(TickListForm, self).clean()
-	if self.cleaned_data.get('start_date')<dtnow.day:
-		self._errors['start_date'] = self.error_class([
-                'Start date cannot be lesser than today.'])
-	if not self.cleaned_data.get('start_date')<=self.cleaned_data.get('end_date') <=num_days+1:
-		self._errors['end_date'] = self.error_class([
-                'Invalid end date'])
+        if self.cleaned_data.get('start_date')<dtnow.day:
+            self._errors['start_date'] = self.error_class(['Start date cannot be lesser than today.'])
+        if not self.cleaned_data.get('start_date')<=self.cleaned_data.get('end_date') <=num_days+1:
+            self._errors['end_date'] = self.error_class(['Invalid end date'])
         # and some more
         return cleaned_data
     class Meta:
@@ -37,10 +35,8 @@ class TickListSelectiveForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super(TickListSelectiveForm, self).clean()
         # do your custom validations / transformations here
-	if dtnow.day>self.cleaned_data.get('req_date') or  self.cleaned_data.get('req_date')>num_days+1:
-		self._errors['req_date'] = self.error_class([
-                'Invalid date'])
-        # and some more
+        if dtnow.day>self.cleaned_data.get('req_date') or  self.cleaned_data.get('req_date')>num_days+1:
+            self._errors['req_date'] = self.error_class(['Invalid date'])
         return cleaned_data
     class Meta:
         model = TickList

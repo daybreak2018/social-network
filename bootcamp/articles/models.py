@@ -8,7 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.db.models import Count
 
 import markdown
-from taggit.managers import TaggableManager
+
 
 
 @python_2_unicode_compatible
@@ -22,14 +22,13 @@ class Article(models.Model):
 
     title = models.CharField(max_length=255)
     slug = AutoSlugField(populate_from='title')
-    tags = TaggableManager()
     content = models.TextField(max_length=4000)
     status = models.CharField(max_length=1, choices=STATUS, default=DRAFT)
-    create_user = models.ForeignKey(User)
+    create_user = models.ForeignKey(User,on_delete=models.CASCADE,)
     create_date = models.DateTimeField(auto_now_add=True)
     update_date = models.DateTimeField(auto_now=True)
     update_user = models.ForeignKey(User, null=True, blank=True,
-                                    related_name="+")
+                                    related_name="+",on_delete=models.CASCADE,)
 
     class Meta:
         verbose_name = _("Article")
@@ -47,20 +46,7 @@ class Article(models.Model):
         articles = Article.objects.filter(status=Article.PUBLISHED)
         return articles
 
-    @staticmethod
-    def get_counted_tags():
-        tag_dict = {}
-        query = Article.objects.filter(status='P').annotate(tagged=Count(
-            'tags')).filter(tags__gt=0)
-        for obj in query:
-            for tag in obj.tags.names():
-                if tag not in tag_dict:
-                    tag_dict[tag] = 1
 
-                else:  # pragma: no cover
-                    tag_dict[tag] += 1
-
-        return tag_dict.items()
 
     def get_summary(self):
         if len(self.content) > 255:
@@ -77,10 +63,10 @@ class Article(models.Model):
 
 @python_2_unicode_compatible
 class ArticleComment(models.Model):
-    article = models.ForeignKey(Article)
+    article = models.ForeignKey(Article,on_delete=models.CASCADE,)
     comment = models.CharField(max_length=500)
     date = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User,on_delete=models.CASCADE,)
 
     class Meta:
         verbose_name = _("Article Comment")

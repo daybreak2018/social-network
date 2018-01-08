@@ -20,11 +20,14 @@ from bootcamp.activities.models import Activity
 from bootcamp.messenger.models import Message
 
 from PIL import Image
+
+
 def about(request):
-	return render(request, 'core/about.html')
+    return render(request, 'core/about.html')
+
 
 def home(request):
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         return feeds(request)
     else:
         return render(request, 'core/cover.html')
@@ -70,7 +73,7 @@ def profile(request, username):
     data, datepoints = Activity.daily_activity(page_user)
     data = {
         'page_user': page_user,
-	'dept':dept,
+        'dept':dept,
         'feeds_count': feeds_count,
         'article_count': article_count,
         'article_comment_count': article_comment_count,
@@ -102,9 +105,9 @@ def settings(request):
             user.email = form.cleaned_data.get('email')
             user.profile.joiningyear = form.cleaned_data.get('joiningyear')
             user.profile.location = form.cleaned_data.get('location')
-	    user.profile.phone = form.cleaned_data.get('phone')
-	    user.profile.gphone = form.cleaned_data.get('gphone')
-  	    user.profile.room_num = form.cleaned_data.get('room_num')
+            user.profile.phone = form.cleaned_data.get('phone')
+            user.profile.gphone = form.cleaned_data.get('gphone')
+            user.profile.room_num = form.cleaned_data.get('room_num')
             user.save()
             messages.add_message(request,
                                  messages.SUCCESS,
@@ -115,9 +118,9 @@ def settings(request):
             'department': user.profile.department,
             'joiningyear': user.profile.joiningyear,
             'location': user.profile.location,
-	    'phone': user.profile.phone,
-	    'gphone': user.profile.gphone,
-	    'room_num': user.profile.room_num
+            'phone': user.profile.phone,
+            'gphone': user.profile.gphone,
+            'room_num': user.profile.room_num
             })
 
     return render(request, 'core/settings.html', {'form': form})

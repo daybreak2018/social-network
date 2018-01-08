@@ -18,7 +18,7 @@ from bootcamp.activities.models import Notification
 class Profile(models.Model):
     phone_regex = RegexValidator(regex=r'^\+?1?\d{10,12}$', message="Phone number must be entered in the format: '+999999999'. Up to 12 digits allowed.")
     room_regex = RegexValidator(regex=r'^[n|o]\d\d\d$')
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User,on_delete=models.CASCADE,)
     location = models.CharField(max_length=50, null=True, blank=True)
     joiningyear = models.CharField(max_length=50, null=True, blank=True)
     department = models.CharField(max_length=50, null=True, blank=True)

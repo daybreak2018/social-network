@@ -5,7 +5,7 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import get_object_or_404, render
 from django.template.loader import render_to_string
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 
 import markdown
 from bootcamp.articles.forms import ArticleForm
@@ -25,11 +25,9 @@ def _articles(request, articles):
     except EmptyPage:   # pragma: no cover
         articles = paginator.page(paginator.num_pages)
 
-    popular_tags = Article.get_counted_tags()
 
     return render(request, 'articles/articles.html', {
         'articles': articles,
-        'popular_tags': popular_tags
     })
 
 
@@ -64,10 +62,7 @@ def article(request, slug):
     return render(request, 'articles/article.html', {'article': article})
 
 
-@login_required
-def tag(request, tag_name):
-    articles = Article.objects.filter(tags__name=tag_name).filter(status='P')
-    return _articles(request, articles)
+
 
 
 @login_required
