@@ -1,5 +1,16 @@
 # Installation Guide
 Now that you have cloned our repository follow these steps to run the **Hostelbook** in your local server.
+
+Make sure you have Python2 installed
+
+* **Install Dependencies** :- 
+
+```
+sudo apt-get install python2-dev
+sudo apt-get install libpq-dev
+pip install -r requrements.txt
+```
+
 * **Install database** :- 
     ```
     #~/social-network/>>
